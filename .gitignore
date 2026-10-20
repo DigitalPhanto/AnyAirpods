@@ -1,0 +1,12 @@
+# MAI pubblicare la chiave privata degli aggiornamenti
+chiave_privata.pem
+# appunti privati (info personali e del PC)
+CLAUDE.md
+COME_FUNZIONA.txt
+# file generati
+build/
+dist/
+rilascio/
+*.spec
+__pycache__/
+scansione.txt
