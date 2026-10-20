@@ -13,7 +13,7 @@ import sys
 
 import comtypes.client
 
-NOME = "AirPods su Windows.lnk"
+NOME = "AnyAirpods.lnk"
 
 
 def percorso_collegamento():

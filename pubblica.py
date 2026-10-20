@@ -29,13 +29,13 @@ def main():
                    cwd=CARTELLA)
     destinazione = os.path.join(CARTELLA, "rilascio", f"v{VERSIONE}")
     os.makedirs(destinazione, exist_ok=True)
-    exe = os.path.join(destinazione, "AirPodsSuWindows.exe")
-    shutil.copy2(os.path.join(CARTELLA, "dist", "AirPodsSuWindows.exe"), exe)
+    exe = os.path.join(destinazione, "AnyAirpods.exe")
+    shutil.copy2(os.path.join(CARTELLA, "dist", "AnyAirpods.exe"), exe)
     firma.firma(exe)
     print()
     print(f"Pronto: {destinazione}")
     print(f"Ora su https://github.com/{REPO}/releases/new crea il tag v{VERSIONE}")
-    print("e carica AirPodsSuWindows.exe e AirPodsSuWindows.exe.sig")
+    print("e carica AnyAirpods.exe e AnyAirpods.exe.sig")
 
 
 if __name__ == "__main__":

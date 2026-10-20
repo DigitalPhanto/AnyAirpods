@@ -14,7 +14,7 @@ In basso il popup cambia in base allo stato:
   si può sapere in modo affidabile se sono collegate
 
 Uso:  python notifica.py      (Ctrl+C nel terminale per uscire)
-      pythonw notifica.py     (senza finestra; log in %LOCALAPPDATA%\\AirPodsSuWindows)
+      pythonw notifica.py     (senza finestra; log in %LOCALAPPDATA%\\AnyAirpods)
 Gira una sola copia alla volta. Avvio automatico: vedi avvio_automatico.py
 """
 import asyncio
@@ -315,7 +315,7 @@ def gia_in_esecuzione(attesa_s=0):
     kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
     fine = time.monotonic() + attesa_s
     while True:
-        handle = kernel32.CreateMutexW(None, False, "AirPodsSuWindows_notifica")
+        handle = kernel32.CreateMutexW(None, False, "AnyAirpods_notifica")
         if ctypes.get_last_error() != 183:  # ERROR_ALREADY_EXISTS
             return False
         kernel32.CloseHandle(handle)
@@ -366,7 +366,7 @@ class Finestrella:
 def main():
     if sys.stdout is None:
         # Avviato con pythonw (senza finestra): i messaggi vanno in un file di log
-        cartella = os.path.join(os.environ["LOCALAPPDATA"], "AirPodsSuWindows")
+        cartella = os.path.join(os.environ["LOCALAPPDATA"], "AnyAirpods")
         os.makedirs(cartella, exist_ok=True)
         sys.stdout = sys.stderr = open(os.path.join(cartella, "notifica.log"), "a",
                                        encoding="utf-8", buffering=1)
@@ -515,7 +515,7 @@ def main():
     print(time.strftime("%Y-%m-%d %H:%M:%S"), f"Versione {VERSIONE}.",
           "In ascolto. Apri la custodia delle AirPods. Ctrl+C per uscire.")
     if aggiornato:
-        Finestrella(root, "AirPods su Windows aggiornato",
+        Finestrella(root, "AnyAirpods aggiornato",
                     f"Ora hai la versione {VERSIONE}.", durata_ms=6000)
     root.after(200, controlla_coda)
     try:
@@ -538,7 +538,7 @@ def crea_icona_vassoio(comandi, controlla_aggiornamenti):
         comandi.put("esci")
 
     menu = pystray.Menu(
-        pystray.MenuItem(f"AirPods su Windows {VERSIONE}", None, enabled=False),
+        pystray.MenuItem(f"AnyAirpods {VERSIONE}", None, enabled=False),
         pystray.MenuItem("Mostra batterie", lambda icon, voce: comandi.put("mostra"),
                          default=True),  # anche doppio clic sull'icona
         pystray.MenuItem("Avvia con Windows", cambia_avvio,
@@ -547,7 +547,7 @@ def crea_icona_vassoio(comandi, controlla_aggiornamenti):
                          lambda icon, voce: controlla_aggiornamenti()),
         pystray.MenuItem("Esci", esci),
     )
-    icona = pystray.Icon("AirPodsSuWindows", crea_icona(64), "AirPods su Windows", menu)
+    icona = pystray.Icon("AnyAirpods", crea_icona(64), "AnyAirpods", menu)
     icona.run_detached()
     return icona
 

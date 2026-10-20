@@ -1,6 +1,6 @@
 """Installazione in una cartella fissa e aggiornamenti automatici da GitHub Releases.
 
-- Al primo avvio l'exe si copia in %LOCALAPPDATA%\\AirPodsSuWindows e riparte da lì
+- Al primo avvio l'exe si copia in %LOCALAPPDATA%\\AnyAirpods e riparte da lì
   (serve un posto fisso per potersi aggiornare).
 - controlla(): chiede a GitHub l'ultima release; se è più nuova restituisce i dati.
 - scarica_e_verifica(): scarica exe + firma e controlla la firma con la chiave pubblica
@@ -23,8 +23,8 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 from versione import REPO, VERSIONE
 
 CHIAVE_PUBBLICA = "DixQxUnUZPAvy/9A8dlTjRaD0OsQWsfrUuGy01WGfIw="
-NOME_EXE = "AirPodsSuWindows.exe"
-CARTELLA_INSTALLAZIONE = os.path.join(os.environ["LOCALAPPDATA"], "AirPodsSuWindows")
+NOME_EXE = "AnyAirpods.exe"
+CARTELLA_INSTALLAZIONE = os.path.join(os.environ["LOCALAPPDATA"], "AnyAirpods")
 EXE_INSTALLATO = os.path.join(CARTELLA_INSTALLAZIONE, NOME_EXE)
 
 
@@ -69,7 +69,7 @@ def controlla():
         return None
     url = f"https://api.github.com/repos/{REPO}/releases/latest"
     richiesta = urllib.request.Request(url, headers={
-        "Accept": "application/vnd.github+json", "User-Agent": "AirPodsSuWindows"})
+        "Accept": "application/vnd.github+json", "User-Agent": "AnyAirpods"})
     try:
         with urllib.request.urlopen(richiesta, timeout=15) as r:
             release = json.load(r)
@@ -86,7 +86,7 @@ def controlla():
 
 
 def _scarica(url):
-    richiesta = urllib.request.Request(url, headers={"User-Agent": "AirPodsSuWindows"})
+    richiesta = urllib.request.Request(url, headers={"User-Agent": "AnyAirpods"})
     with urllib.request.urlopen(richiesta, timeout=120) as r:
         return r.read()
 

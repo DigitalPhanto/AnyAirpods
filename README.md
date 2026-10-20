@@ -42,16 +42,16 @@ come su iPhone.
 
 ## Installazione
 
-1. Scarica `AirPodsSuWindows.exe` dall'ultima
+1. Scarica `AnyAirpods.exe` dall'ultima
    [release](https://github.com/DigitalPhanto/AnyAirpods/releases/latest).
 2. Avvialo. Windows SmartScreen potrebbe avvisare che l'app è sconosciuta, perché non è
    firmata con un certificato a pagamento: *Ulteriori informazioni → Esegui comunque*.
-3. L'app si copia in `%LOCALAPPDATA%\AirPodsSuWindows`, si attiva all'avvio di Windows e
+3. L'app si copia in `%LOCALAPPDATA%\AnyAirpods`, si attiva all'avvio di Windows e
    compare l'icona vicino all'orologio.
 4. Apri la custodia delle AirPods vicino al PC.
 
 **Disinstallare**: menu dell'icona → togli *Avvia con Windows* → *Esci*, poi cancella la
-cartella `%LOCALAPPDATA%\AirPodsSuWindows`.
+cartella `%LOCALAPPDATA%\AnyAirpods`.
 
 ## Come funziona
 
@@ -99,7 +99,7 @@ si possono replicare.
 pip install bleak comtypes pillow pystray cryptography pyinstaller
 python notifica.py          # avvia l'app da sorgente
 python scanner.py 30        # stampa i messaggi BLE delle AirPods (debug)
-crea_exe.bat                # crea dist\AirPodsSuWindows.exe
+crea_exe.bat                # crea dist\AnyAirpods.exe
 python pubblica.py          # crea e firma una nuova versione da pubblicare
 ```
 
